@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 require("config.options")
+require("config.keybinds")
 
 local opts = {
 	defaults = {
