@@ -32,4 +32,3 @@ opt.modifiable = true
 -- TODO: custom cursor 
 -- opt.guicursor =  
 opt.encoding = "UTF-8"
-
