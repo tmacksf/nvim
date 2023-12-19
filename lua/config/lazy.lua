@@ -34,6 +34,7 @@ local opts = {
 			"zipPlugin",
 		},
 	},
+  { "folke/neoconf.nvim", cmd = "Neoconf" }
 }
 
 require("lazy").setup("plugins", opts)

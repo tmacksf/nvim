@@ -12,4 +12,5 @@ return {
     -- refer to the configuration section below
     }
   },
+  { "folke/neoconf.nvim", cmd = "Neoconf" }
 }

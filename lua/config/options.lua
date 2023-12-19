@@ -14,13 +14,16 @@ opt.ignorecase = true
 opt.smartcase = true
 -- opt.hlsearch = true
 
+-- Remove newline comment
+opt.formatoptions:remove({ "c" })
+
 -- Appearance
 opt.number = true
 opt.relativenumber = true
 opt.termguicolors = true
-opt.colorcolumn = '100'
-opt.signcolumn = 'yes' 
-opt.cmdheight = 1 
+opt.colorcolumn = "100"
+opt.signcolumn = "yes"
+opt.cmdheight = 1
 opt.scrolloff = 10
 --opt.completeopt = "menuone,noinsert,noselect"
 
@@ -29,6 +32,6 @@ opt.splitright = true -- new panes go right
 opt.splitbelow = true -- new panes go below
 opt.clipboard:append("unnamedplus")
 opt.modifiable = true
--- TODO: custom cursor 
--- opt.guicursor =  
+-- TODO: custom cursor
+-- opt.guicursor =
 opt.encoding = "UTF-8"
