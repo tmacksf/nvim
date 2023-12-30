@@ -15,7 +15,7 @@ opt.smartcase = true
 -- opt.hlsearch = true
 
 -- Remove newline comment
-opt.formatoptions:remove({ "c" })
+opt.formatoptions:remove({ "c", "m", "k"})
 
 -- Appearance
 opt.number = true

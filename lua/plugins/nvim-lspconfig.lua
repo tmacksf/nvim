@@ -12,7 +12,7 @@ local on_attach = function()
 		"n",
 		"<space>cd",
 		vim.lsp.buf.type_definition,
-		{ noremap = true, silent = true, desc = "Go to type definition" }
+		{ noremap = true, silent = true, desc = "Go to type definition" } 
 	)
 	vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename" })
 	vim.keymap.set(
@@ -56,7 +56,7 @@ local lua_setup = {
 local go_setup = {
 	on_attach = on_attach,
 	settings = {
-		Haskell = {
+		Go = {
 			diagnostics = {
 				globals = { "vim" },
 			},
