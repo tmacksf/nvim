@@ -12,7 +12,7 @@ local on_attach = function()
 		"n",
 		"<space>cd",
 		vim.lsp.buf.type_definition,
-		{ noremap = true, silent = true, desc = "Go to type definition" } 
+		{ noremap = true, silent = true, desc = "Go to type definition" }
 	)
 	vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename" })
 	vim.keymap.set(
@@ -21,6 +21,18 @@ local on_attach = function()
 		vim.lsp.buf.code_action,
 		{ noremap = true, silent = true, desc = "Code Action" }
 	)
+	-- vim.keymap.set(
+	-- 	"n",
+	-- 	"<leader>cn",
+ --    vim.diagnostic.goto_next()
+	-- 	{ noremap = true, silent = true, desc = "Next diagnostic" }
+	-- )
+	-- vim.keymap.set(
+	-- 	"n",
+	-- 	"<leader>cp",
+	-- 	vim.lsp.diagnostic.goto_prev,
+	-- 	{ noremap = true, silent = true, desc = "Previous diagnostic" }
+	-- )
 	vim.keymap.set("n", "<space>cf", function()
 		vim.lsp.buf.format({ async = true })
 	end, { noremap = true, silent = true, desc = "Format file" })
@@ -77,7 +89,9 @@ local config = function()
 
 	-- Setting up lsps
 	lspconfig.lua_ls.setup(lua_setup)
-	lspconfig.hls.setup({ on_attach = on_attach })
+	lspconfig.hls.setup({
+		on_attach = on_attach,
+	})
 	lspconfig.clangd.setup({ on_attach = on_attach })
 	lspconfig.gopls.setup(go_setup)
 
