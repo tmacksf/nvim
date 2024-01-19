@@ -4,7 +4,7 @@ local on_attach = function()
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true, silent = true, desc = "Go to declaration" })
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
 	vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { noremap = true, desc = "Go to reference" })
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { noremap = true, desc = "Go to implementation" })
 
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
@@ -15,12 +15,8 @@ local on_attach = function()
 		{ noremap = true, silent = true, desc = "Go to type definition" }
 	)
 	vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { noremap = true, silent = true, desc = "Rename" })
-	vim.keymap.set(
-		{ "n", "v" },
-		"<space>ca",
-		vim.lsp.buf.code_action,
-		{ noremap = true, silent = true, desc = "Code Action" }
-	)
+  vim.keymap.set("n", "<space>ce", vim.diagnostic.goto_next, {noremap = true, silent = true, desc = "Go to next diagnostic"})
+	vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "Code Action" })
 	-- vim.keymap.set(
 	-- 	"n",
 	-- 	"<leader>cn",
@@ -67,19 +63,6 @@ local lua_setup = {
 -- Go
 local go_setup = {
 	on_attach = on_attach,
-	settings = {
-		Go = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/go")] = true,
-					[vim.fn.stdpath("config") .. "/go"] = true,
-				},
-			},
-		},
-	},
 }
 
 local config = function()
@@ -94,6 +77,7 @@ local config = function()
 	})
 	lspconfig.clangd.setup({ on_attach = on_attach })
 	lspconfig.gopls.setup(go_setup)
+  lspconfig.pylsp.setup({ on_attach = on_attach })
 
 	-- Setting up formatters and linters
 	local luacheck = require("efmls-configs.linters.luacheck")
@@ -103,7 +87,7 @@ local config = function()
 	-- efm config
 	lspconfig.efm.setup({
 		filetypes = {
-			"lua",
+			"Lua",
 			"c",
 			"cpp",
 		},
@@ -117,7 +101,7 @@ local config = function()
 		},
 		settings = {
 			languages = {
-				lua = { luacheck, stylua },
+				Lua = { luacheck, stylua },
 				c = { clangf },
 				cpp = { clangf },
 			},
@@ -125,19 +109,19 @@ local config = function()
 	})
 
 	-- Format on save
-	local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		group = lsp_fmt_group,
-		callback = function()
-			local efm = vim.lsp.get_clients({ name = "efm" })
-
-			if vim.tbl_isempty(efm) then
-				return
-			end
-
-			vim.lsp.buf.format({ name = "efm" })
-		end,
-	})
+	-- local lsp_fmt_group = vim.api.nvim_create_augroup("LspFormattingGroup", {})
+	-- vim.api.nvim_create_autocmd("BufWritePost", {
+	-- 	group = lsp_fmt_group,
+	-- 	callback = function()
+	-- 		local efm = vim.lsp.get_clients({ name = "efm" })
+	--
+	-- 		if vim.tbl_isempty(efm) then
+	-- 			return
+	-- 		end
+	--
+	-- 		vim.lsp.buf.format({ name = "efm" })
+	-- 	end,
+	-- })
 end
 
 return {

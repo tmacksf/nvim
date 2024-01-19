@@ -15,8 +15,8 @@ local config = function()
 end
 
 return {
-  'nvim-telescope/telescope.nvim', 
-  tag = '0.1.4', 
+  'nvim-telescope/telescope.nvim',
+  tag = '0.1.4',
   lazy = false,
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = config,
@@ -26,5 +26,6 @@ return {
     keymap.set("n", "<leader>ff", ":Telescope find_files<CR>"),
     keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>"),
     keymap.set("n", "<leader>fb", ":Telescope buffers<CR>"),
+    keymap.set("n", "<leader>fc", ":Telescope current_buffer_fuzzy_find<CR>"),
   },
 }
