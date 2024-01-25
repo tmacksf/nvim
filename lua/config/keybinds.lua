@@ -1,11 +1,6 @@
 local keymap = vim.keymap
 
 local opts = { noremap = true, silent = true }
--- File Explorer
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-keymap.set("n", "<leader>E", ":NvimTreeFindFile<CR>", opts)
--- TODO: Add other commands for tree
-
 -- Pane Navigation
 keymap.set("n", "<c-h>", "<C-w>h", opts)
 keymap.set("n", "<c-l>", "<C-w>l", opts)

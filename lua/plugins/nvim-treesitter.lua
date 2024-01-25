@@ -14,6 +14,7 @@ local config = function()
       "cpp",
       "lua",
       "markdown",
+      "go"
     },
   })
 end
